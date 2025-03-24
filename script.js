@@ -1,8 +1,8 @@
-document.getElementById('save-contact').addEventListener('click', function() {
+document.getElementById('save-contact').addEventListener('click', async function() {
   const contact = {
     name: 'Christo Meiring',
     business: 'Bangarang Crafts',
-    mobile: '+27 765202303',
+    mobile: '+27765202303', // Removed spaces for better compatibility
     email: 'christo.bangarang@gmail.com',
     website: 'https://bangarangcrafts.co.za'
   };
@@ -13,13 +13,13 @@ document.getElementById('save-contact').addEventListener('click', function() {
     'VERSION:3.0',
     `FN:${contact.name}`,
     `ORG:${contact.business}`,
-    `TEL;TYPE=CELL:${contact.mobile.replace(/\s/g, '')}`, // Remove spaces for better compatibility
+    `TEL;TYPE=CELL:${contact.mobile}`,
     `EMAIL:${contact.email}`,
     `URL:${contact.website}`,
     'END:VCARD'
   ].join('\n');
 
-  // First try the Web Share API for native contact integration
+  // 1. First try Web Share API with file (works on many mobile browsers)
   if (navigator.share && navigator.canShare && navigator.canShare({ files: [] })) {
     try {
       const blob = new Blob([vCardContent], { type: 'text/vcard' });
@@ -27,61 +27,87 @@ document.getElementById('save-contact').addEventListener('click', function() {
         type: 'text/vcard'
       });
       
-      navigator.share({
+      await navigator.share({
         title: 'Add to Contacts',
         text: `Add ${contact.name} to your contacts`,
         files: [file]
-      }).catch(() => fallbackToDownload(vCardContent, contact));
+      });
+      return;
     } catch (e) {
-      fallbackToDownload(vCardContent, contact);
+      console.log('Web Share failed, falling back');
     }
-  } else {
-    // Fallback to download with instructions
-    fallbackToDownload(vCardContent, contact);
   }
+
+  // 2. Try Android intent (may open contacts app directly)
+  if (/android/i.test(navigator.userAgent)) {
+    try {
+      const intentUrl = `intent://add_contact#Intent;scheme=content;type=text/x-vcard;S.file_name=${encodeURIComponent(contact.name)}.vcf;end`;
+      window.location.href = intentUrl;
+      
+      // Fallback after short delay if intent fails
+      setTimeout(() => {
+        downloadVCardWithInstructions(vCardContent, contact);
+      }, 300);
+      return;
+    } catch (e) {
+      console.log('Android intent failed');
+    }
+  }
+
+  // 3. Final fallback - download with instructions
+  downloadVCardWithInstructions(vCardContent, contact);
 });
 
-function fallbackToDownload(vCardContent, contact) {
+function downloadVCardWithInstructions(vCardContent, contact) {
   try {
-    // Try data URI method first
-    const dataUri = 'data:text/vcard;charset=utf-8,' + encodeURIComponent(vCardContent);
+    // Create download
+    const blob = new Blob([vCardContent], { type: 'text/vcard' });
+    const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
-    link.href = dataUri;
+    link.href = url;
     link.download = `${contact.name.replace(/\s/g, '_')}.vcf`;
     
-    // For iOS, we need to actually add the element to the DOM
     document.body.appendChild(link);
     link.click();
-    document.body.removeChild(link);
     
-    // Show instructions based on platform
+    // Clean up
+    setTimeout(() => {
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    }, 100);
+
+    // Platform-specific instructions
     if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-      alert('Tap "Share" then "Add to Contacts" to save this contact');
+      alert('1. Tap the share icon (box with arrow)\n2. Scroll and select "Add to Contacts"');
     } else if (/Android/i.test(navigator.userAgent)) {
-      alert('Open the downloaded .vcf file to add to your contacts');
+      alert('1. Open your Downloads folder\n2. Tap the .vcf file\n3. Select "Add to Contacts"');
     } else {
       alert('Contact file downloaded. Open it to add to your address book');
     }
   } catch (e) {
     // Ultimate fallback - show contact details
-    const contactDetails = [
-      `Name: ${contact.name}`,
-      `Business: ${contact.business}`,
-      `Phone: ${contact.mobile}`,
-      `Email: ${contact.email}`,
-      `Website: ${contact.website}`
-    ].join('\n\n');
-    
-    if (navigator.clipboard) {
-      if (confirm('Copy contact details to clipboard?')) {
-        navigator.clipboard.writeText(contactDetails)
-          .then(() => alert('Contact details copied! Paste them into your contacts app'))
-          .catch(() => alert(contactDetails));
-      } else {
-        alert(contactDetails);
-      }
+    showManualContactInstructions(contact);
+  }
+}
+
+function showManualContactInstructions(contact) {
+  const details = [
+    `Name: ${contact.name}`,
+    `Business: ${contact.business}`,
+    `Phone: ${contact.mobile}`,
+    `Email: ${contact.email}`,
+    `Website: ${contact.website}`
+  ].join('\n\n');
+
+  if (navigator.clipboard) {
+    if (confirm('Copy contact details to clipboard?')) {
+      navigator.clipboard.writeText(details)
+        .then(() => alert('Details copied! Open your contacts app to paste them'))
+        .catch(() => alert(details));
     } else {
-      alert(contactDetails);
+      alert(details);
     }
+  } else {
+    alert(details);
   }
 }
