@@ -130,3 +130,17 @@ footer {
   background-color: rgba(216, 87, 42, 1); /* Solid Burnt Orange on hover */
   transform: translateY(-2px); /* Slight lift effect */
 }
+
+/* WhatsApp Button Specific Styles */
+.whatsapp-button {
+  background-color: rgba(37, 211, 102, 0.8) !important; /* WhatsApp green */
+  border: 1px solid rgba(37, 211, 102, 0.9) !important;
+}
+
+.whatsapp-button:hover {
+  background-color: rgba(37, 211, 102, 1) !important;
+}
+
+.whatsapp-button i {
+  margin-right: 8px;
+}
