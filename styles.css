@@ -144,3 +144,14 @@ footer {
 .whatsapp-button i {
   margin-right: 8px;
 }
+
+/* WhatsApp icon adjustment only */
+.link-button i {
+  margin-right: 8px;
+}
+
+.link-button .fa-whatsapp {
+  margin-right: 8px;
+  font-size: 1.1em; /* Slightly larger icon */
+  vertical-align: middle;
+}
