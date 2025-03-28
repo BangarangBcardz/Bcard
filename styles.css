@@ -156,3 +156,7 @@ footer {
   font-size: 1.1em; /* Slightly larger icon */
   vertical-align: middle;
 }
+
+a {
+  text-decoration: none;
+}
