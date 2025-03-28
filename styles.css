@@ -5,6 +5,10 @@
   box-sizing: border-box;
 }
 
+a {
+  text-decoration: none;
+}
+
 body {
   font-family: 'Poppins', sans-serif;
   background: #0A2342; /* Deep Navy Blue */
@@ -155,8 +159,4 @@ footer {
   margin-right: 8px;
   font-size: 1.1em; /* Slightly larger icon */
   vertical-align: middle;
-}
-
-a {
-  text-decoration: none;
 }
