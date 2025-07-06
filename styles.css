@@ -1,3 +1,13 @@
+/* Updated Purple Color Scheme Based on Logo */
+:root {
+  --deep-purple: #3A1D6E;       /* Rich purple (main background) */
+  --vibrant-purple: #6A2C8E;    /* Brighter purple (accent) */
+  --soft-purple: #8E6AA1;       /* Muted purple (secondary) */
+  --lavender: #C9A7EB;          /* Light purple (text/highlights) */
+  --gold: #D4AF37;              /* Metallic gold (accent) */
+  --cream: #FFF9E6;             /* Cream (text/background) */
+}
+
 /* General Styles */
 * {
   margin: 0;
@@ -5,16 +15,15 @@
   box-sizing: border-box;
 }
 
-/* Removes underline in all states */
+/* Link styling */
 a, a:link, a:visited, a:hover, a:active {
   text-decoration: none !important;
-  color: rgba(244, 235, 208, 0.6); /* Slightly transparent Warm Beige */		
 }
 
 body {
   font-family: 'Poppins', sans-serif;
-  background: #0A2342; /* Deep Navy Blue */
-  color: #F4EBD0; /* Warm Beige */
+  background: var(--deep-purple); /* Deep purple background */
+  color: var(--lavender); /* Lavender text color */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,12 +34,13 @@ body {
 .container {
   max-width: 600px;
   width: 100%;
-  background: rgba(244, 235, 208, 0.1); /* Semi-transparent Warm Beige */
-  backdrop-filter: blur(10px); /* Glassmorphism effect */
+  background: rgba(58, 29, 110, 0.85); /* Semi-transparent deep purple */
+  backdrop-filter: blur(10px);
   border-radius: 15px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
   padding: 20px;
   text-align: center;
+  border: 2px solid var(--gold); /* Gold border */
 }
 
 /* Profile Picture Section */
@@ -39,25 +49,27 @@ body {
 }
 
 .profile-picture img {
-  width: 100px; /* Smaller for mobile */
-  height: 100px; /* Smaller for mobile */
-  border-radius: 50%; /* Circular profile picture */
-  border: 3px solid #B68D40; /* Muted Gold border */
-  object-fit: cover; /* Ensures the image fits well */
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 3px solid var(--vibrant-purple); /* Vibrant purple border */
+  object-fit: cover;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 /* Header Section */
 header h1 {
-  font-size: 2rem; /* Smaller for mobile */
+  font-size: 2rem;
   font-weight: 600;
   margin-bottom: 10px;
-  color: #F4EBD0; /* Warm Beige */
+  color: var(--cream);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 header h2 {
-  font-size: 1rem; /* Smaller for mobile */
+  font-size: 1rem;
   font-weight: 400;
-  color: rgba(244, 235, 208, 0.8); /* Slightly transparent Warm Beige */
+  color: var(--gold); /* Gold subtitle */
 }
 
 /* Links Section */
@@ -65,100 +77,85 @@ header h2 {
   margin-top: 20px;
   display: flex;
   flex-direction: column;
-  gap: 10px; /* Smaller gap for mobile */
+  gap: 10px;
 }
 
 .link-button {
-  padding: 10px 15px; /* Smaller padding for mobile */
-  background-color: rgba(216, 87, 42, 0.8); /* Burnt Orange */
-  color: #F4EBD0; /* Warm Beige */
-  text-decoration: none;
+  padding: 10px 15px;
+  background-color: var(--vibrant-purple); /* Vibrant purple */
+  color: var(--cream);
   border-radius: 5px;
-  font-size: 0.9rem; /* Smaller font for mobile */
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  border: 1px solid rgba(216, 87, 42, 0.9); /* Burnt Orange border */
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  border: 1px solid var(--soft-purple);
+  font-weight: 500;
 }
 
 .link-button:hover {
-  background-color: rgba(216, 87, 42, 1); /* Solid Burnt Orange on hover */
-  transform: translateY(-2px); /* Slight lift effect */
+  background-color: #5D2580; /* Slightly darker purple */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Footer Section */
 footer {
   margin-top: 20px;
-  font-size: 0.8rem; /* Smaller font for mobile */
-  color: rgba(244, 235, 208, 0.6); /* Slightly transparent Warm Beige */
+  font-size: 0.8rem;
+  color: var(--lavender);
+}
+
+/* Save Contact Button */
+#save-contact {
+  background-color: var(--gold); /* Gold button */
+  color: var(--deep-purple); /* Deep purple text */
+  border: 1px solid var(--gold);
+}
+
+#save-contact:hover {
+  background-color: #C9A227; /* Slightly darker gold */
+}
+
+/* WhatsApp Button */
+.whatsapp-button {
+  background-color: #25D366 !important;
+  border: 1px solid #25D366 !important;
+}
+
+.whatsapp-button:hover {
+  background-color: #1EA851 !important;
+}
+
+/* Icon adjustments */
+.link-button i {
+  margin-right: 8px;
+}
+
+.fa-whatsapp {
+  font-size: 1.1em;
+  vertical-align: middle;
 }
 
 /* Media Queries for Larger Screens */
 @media (min-width: 768px) {
   .profile-picture img {
-    width: 120px; /* Larger for tablets and desktops */
-    height: 120px; /* Larger for tablets and desktops */
+    width: 120px;
+    height: 120px;
   }
 
   header h1 {
-    font-size: 2.5rem; /* Larger for tablets and desktops */
+    font-size: 2.5rem;
   }
 
   header h2 {
-    font-size: 1.2rem; /* Larger for tablets and desktops */
+    font-size: 1.2rem;
   }
 
   .links-section {
-    gap: 15px; /* Larger gap for tablets and desktops */
+    gap: 15px;
   }
 
   .link-button {
-    padding: 12px 20px; /* Larger padding for tablets and desktops */
-    font-size: 1rem; /* Larger font for tablets and desktops */
+    padding: 12px 20px;
+    font-size: 1rem;
   }
-
-  .Footer {
-	font-size: 0.8rem; /* Smaller font for mobile */
-	color: rgba(244, 235, 208, 0.6); /* Slightly transparent Warm Beige */
-  }
-}
-
-/* Save Contact Button */
-#save-contact {
-  padding: 10px 15px; /* Consistent with other buttons */
-  background-color: rgba(216, 87, 42, 0.8); /* Burnt Orange */
-  color: #F4EBD0; /* Warm Beige */
-  border: 1px solid rgba(216, 87, 42, 0.9); /* Burnt Orange border */
-  border-radius: 5px;
-  font-size: 0.9rem; /* Consistent with other buttons */
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-#save-contact:hover {
-  background-color: rgba(216, 87, 42, 1); /* Solid Burnt Orange on hover */
-  transform: translateY(-2px); /* Slight lift effect */
-}
-
-/* WhatsApp Button Specific Styles */
-.whatsapp-button {
-  background-color: rgba(37, 211, 102, 0.8) !important; /* WhatsApp green */
-  border: 1px solid rgba(37, 211, 102, 0.9) !important;
-}
-
-.whatsapp-button:hover {
-  background-color: rgba(37, 211, 102, 1) !important;
-}
-
-.whatsapp-button i {
-  margin-right: 8px;
-}
-
-/* WhatsApp icon adjustment only */
-.link-button i {
-  margin-right: 8px;
-}
-
-.link-button .fa-whatsapp {
-  margin-right: 8px;
-  font-size: 1.1em; /* Slightly larger icon */
-  vertical-align: middle;
 }
