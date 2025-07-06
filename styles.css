@@ -1,11 +1,11 @@
-/* Updated Purple Color Scheme Based on Logo */
+/* Updated Color Scheme Only - All Else Identical to Original */
 :root {
-  --deep-purple: #3A1D6E;       /* Rich purple (main background) */
-  --vibrant-purple: #6A2C8E;    /* Brighter purple (accent) */
-  --soft-purple: #8E6AA1;       /* Muted purple (secondary) */
-  --lavender: #C9A7EB;          /* Light purple (text/highlights) */
-  --gold: #D4AF37;              /* Metallic gold (accent) */
-  --cream: #FFF9E6;             /* Cream (text/background) */
+  --deep-purple: #4B3D60;       /* Softer deep purple */
+  --vibrant-purple: #7D5BA6;    /* Less intense purple */
+  --soft-purple: #A899C6;       /* More muted purple */
+  --lavender: #E2D6F5;          /* Softer light purple */
+  --gold: #D4AF37;              /* Same gold accent */
+  --cream: #FFF9E6;             /* Same cream */
 }
 
 /* General Styles */
@@ -15,7 +15,7 @@
   box-sizing: border-box;
 }
 
-/* Link styling */
+/* Removes underline in all states */
 a, a:link, a:visited, a:hover, a:active {
   text-decoration: none !important;
 }
@@ -34,7 +34,7 @@ body {
 .container {
   max-width: 600px;
   width: 100%;
-  background: rgba(58, 29, 110, 0.85); /* Semi-transparent deep purple */
+  background: rgba(75, 61, 96, 0.85); /* Semi-transparent deep purple */
   backdrop-filter: blur(10px);
   border-radius: 15px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
@@ -92,7 +92,7 @@ header h2 {
 }
 
 .link-button:hover {
-  background-color: #5D2580; /* Slightly darker purple */
+  background-color: #6D4B96; /* Slightly darker purple */
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
