@@ -1,0 +1,283 @@
+/* Updated Color Scheme - Dark Blues & Black with Complementary Accents */
+:root {
+  --near-black: #0A1929;        /* Almost black with blue undertone - primary background */
+  --dark-navy: #1E3A5F;         /* Deep navy - secondary background, containers */
+  --slate-blue: #2C3E50;        /* Muted blue-gray - borders, secondary elements */
+  --accent-gold: #E9C46A;       /* Warm gold - highlights, buttons, call-to-action */
+  --accent-teal: #2A9D8F;       /* Deep teal - special accents, hover states */
+  --text-light: #F8F9FA;        /* Off-white - primary text */
+  --text-muted: #B0C4DE;        /* Light steel blue - secondary text, footers */
+}
+
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Removes underline in all states */
+a, a:link, a:visited, a:hover, a:active {
+  text-decoration: none !important;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--near-black);       /* Deep dark background */
+  color: var(--text-light);            /* Light text for contrast */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.container {
+  max-width: 600px;
+  width: 100%;
+  background: rgba(30, 58, 95, 0.8);   /* Dark navy with transparency */
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  text-align: center;
+  border: 2px solid var(--accent-gold); /* Gold border for contrast */
+}
+
+/* Profile Picture Section */
+.profile-picture {
+  margin-bottom: 20px;
+}
+
+.profile-picture img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 3px solid var(--accent-gold); /* Gold border */
+  object-fit: cover;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Header Section */
+header h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: var(--accent-gold);            /* Gold headers for pop */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+header h2 {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--accent-teal);             /* Teal subtitle */
+}
+
+/* Links Section */
+.links-section {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.link-button {
+  padding: 10px 15px;
+  background-color: var(--dark-navy);    /* Deep navy button background */
+  color: var(--text-light);
+  border-radius: 5px;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  border: 1px solid var(--slate-blue);
+  font-weight: 500;
+}
+
+.link-button:hover {
+  background-color: var(--slate-blue);   /* Lighter navy on hover */
+  border-color: var(--accent-gold);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Footer Section */
+footer {
+  margin-top: 20px;
+  font-size: 0.8rem;
+  color: var(--text-muted);              /* Muted steel blue */
+}
+
+footer a {
+  color: var(--accent-gold);
+  font-weight: 500;
+}
+
+footer a:hover {
+  color: var(--accent-teal);
+}
+
+/* Save Contact Button - Special Accent */
+#save-contact {
+  background-color: var(--accent-gold);  /* Gold background for primary action */
+  color: var(--near-black);              /* Dark text for contrast */
+  border: 1px solid var(--accent-gold);
+  font-weight: 600;
+}
+
+#save-contact:hover {
+  background-color: #d4a84a; /* Slightly darker gold */
+  border-color: var(--accent-teal);
+}
+
+/* WhatsApp Button - Keep brand color but adjusted for dark bg */
+.whatsapp-button {
+  background-color: #25D366 !important;
+  border: 1px solid #25D366 !important;
+  color: white !important;
+}
+
+.whatsapp-button:hover {
+  background-color: #1EA851 !important;
+}
+
+/* Icon adjustments */
+.link-button i {
+  margin-right: 8px;
+}
+
+.fa-whatsapp {
+  font-size: 1.1em;
+  vertical-align: middle;
+}
+
+/* Media Queries for Larger Screens */
+@media (min-width: 768px) {
+  .profile-picture img {
+    width: 120px;
+    height: 120px;
+  }
+
+  header h1 {
+    font-size: 2.5rem;
+  }
+
+  header h2 {
+    font-size: 1.2rem;
+  }
+
+  .links-section {
+    gap: 15px;
+  }
+
+  .link-button {
+    padding: 12px 20px;
+    font-size: 1rem;
+  }
+}
+
+/* Email Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+}
+
+.modal-content {
+  background: var(--dark-navy);
+  padding: 30px;
+  border-radius: 10px;
+  max-width: 500px;
+  width: 90%;
+  border: 2px solid var(--accent-gold);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+}
+
+.modal-content h3 {
+  color: var(--accent-gold);
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--text-light);
+  font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 5px;
+  border: 1px solid var(--slate-blue);
+  background: var(--near-black);
+  color: var(--text-light);
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--accent-gold);
+}
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.modal-actions button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-submit {
+  background: var(--accent-gold);
+  color: var(--near-black);
+}
+
+.btn-submit:hover {
+  background: #d4a84a;
+  transform: translateY(-2px);
+}
+
+.btn-close {
+  background: var(--slate-blue);
+  color: var(--text-light);
+}
+
+.btn-close:hover {
+  background: var(--dark-navy);
+  border: 1px solid var(--accent-gold);
+}
+
+.error-message {
+  color: var(--terracotta);
+  margin-top: 15px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.success-message {
+  color: var(--accent-teal);
+}
